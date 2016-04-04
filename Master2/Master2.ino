@@ -75,7 +75,7 @@ void setup()
   layer11.setBrightness(brightness);
   layer11.show();
 
-//  opening(60);
+  opening(60);
 
 }
 
@@ -114,7 +114,7 @@ void opening(int fadeSteps)
   uint32_t eColor;
 
 //delay(5000);
-//delay(5000);
+delay(5000);
 
 for(int i=0; i<26; i++)
 {

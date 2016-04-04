@@ -76,7 +76,14 @@ void loop() {
  waggle(30, layer0.Color(255, 255, 0), layer0.Color(52, 89, 149));
  waggle(30, layer0.Color(255, 255, 0), layer0.Color(251, 77, 61));
  waggle(30, layer0.Color(255, 255, 0), layer0.Color(0, 0, 0)); 
- waggle(30, layer0.Color(255, 255, 0), layer0.Color(0, 0, 0)); 
+ waggle(30, layer0.Color(255, 255, 0), layer0.Color(0, 0, 0));
+  
+ waggle(30, layer0.Color(0, 0, 0), layer0.Color(102, 0, 51));
+ waggle(30, layer0.Color(0, 0, 0), layer0.Color(0, 153, 76));
+ waggle(30, layer0.Color(0, 0, 0), layer0.Color(52, 89, 149));
+ waggle(30, layer0.Color(0, 0, 0), layer0.Color(251, 77, 61));
+// waggle(30, layer0.Color(0, 0, 0), layer0.Color(0, 0, 0)); 
+// waggle(30, layer0.Color(0, 0, 0), layer0.Color(0, 0, 0));
 }
 
 

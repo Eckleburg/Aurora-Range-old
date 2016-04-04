@@ -78,7 +78,7 @@ void setup()
 }
 
 void loop() {
-  strobe();
+//  strobe();
   breathe();
 }
 

@@ -77,6 +77,20 @@ void setup()
 
 void loop() {
 
+stretchWaveUp(3, 0, c.Color(255, 0, 0), c.Color(0, 0, 255));
+
+//waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
+//waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
+//waveUpFade(4, c.Color(0, 0, 0), c.Color(255, 0, 0), c.Color(0, 255, 0));
+//
+//waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 255, 0));
+//waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 255, 0));
+//waveUpFade(4, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
+//
+//waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 0, 255));
+//waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 0, 255));
+//waveUpFade(4, c.Color(0, 0, 0), c.Color(0, 0, 255), c.Color(255, 0, 0));
+//
 //waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
 //waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
 //waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
@@ -92,32 +106,49 @@ void loop() {
 //waveUp(11, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
 //waveUp(5, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 0, 255));
 //waveUp(3 , 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 255));
-waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-
-//singleColorFadeEx(5, c.Color(128, 255, 255));
-curColor = c.Color(255, 0, 255);
-singleColorFadeEx(5, c.Color(255, 255, 0));
-
-waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
-delay(400);
-waveUp(10, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(9, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(8, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(7, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(6, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(5, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(4, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(3, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-
-
+//waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
+//waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
+//waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
+//
+////singleColorFadeEx(5, c.Color(128, 255, 255));
+//curColor = c.Color(255, 0, 255);
+//singleColorFadeEx(1, c.Color(255, 255, 0));
+//
+//waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//delay(400);
+//waveUp(10, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//waveUp(9, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//waveUp(8, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//waveUp(7, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//waveUp(6, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//waveUp(5, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//waveUp(4, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//waveUp(3, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+//
+//
 //singleWaveUp(0x1F5B5D, 0xb8599b, c.Color(255,255,102));
 
   
 }
 
+void stretchWaveUp(int waveLayers, uint32_t wait, uint32_t color1, uint32_t color2)
+{  
+  calcComp(color1, color2);
+  calcSlopes(50);
+
+  for(int waveStep = 0; waveStep < 100; waveStep++)
+  {
+    for(int layerCntr = 0; layerCntr <= 11; layerCntr++)
+    {
+      if(waveStep <= 50)
+        assignLayer(layerCntr, c.Color(r1+rSlope*waveStep, g1+gSlope*waveStep, b1+bSlope*waveStep));
+      else if(waveStep > 50 && waveStep <= 100)
+        assignLayer(layerCntr, c.Color(r1-rSlope*(waveStep-50), g1-gSlope*(waveStep-50), b1-bSlope*(waveStep-50)));   
+    }
+    showAll();
+  }
+}
 void singleColorExpand(uint32_t eColor)
 {
   for (int l=0; l<=11; l++)
@@ -176,6 +207,13 @@ void waveUp(int waves, int fadeSteps, uint32_t wait, uint32_t tColor1, uint32_t 
         assignColor(h+j-1, c.Color(r2-m*rSlope, g2-m*gSlope, b2-m*bSlope));
         showLayer(h+j);
         showLayer(h+j-1);
+
+
+        if(h+j == 0)
+        {
+          assignColor(11, tColor1);        
+          showLayer(11);
+        }
         delay(wait);
       }  
     }
@@ -217,6 +255,10 @@ void waveUpFade(int waves, uint32_t backgroundColor, uint32_t waveColor1, uint32
     for (int h=0; h<11; h=h+waves)
     {
       assignColor(h+j, c.Color(r1+rSlope*j, g1+gSlope*j, b1+bSlope*j));
+      assignColor(h+j-1, backgroundColor);
+
+      if(h+j == 0)
+      assignColor(11, backgroundColor);
     }
     
 
@@ -250,6 +292,90 @@ void waveDn(int waves, uint32_t tColor1, uint32_t tColor2)
   }
   
 }
+
+void assignLayer(int layer, uint32_t displayColor) 
+{
+  int i;
+  
+  switch(layer) {
+    case 0:
+      for(i=0; i<38; i++) {
+        layer0.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 1:
+      for(i=0; i<66; i++) {
+        layer1.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 2:
+      for(i=0; i<97; i++) {
+        layer2.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 3:
+      for(i=0; i<112; i++) {
+        layer3.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 4:
+      for(i=0; i<144; i++) {
+        layer4.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 5:
+      for(i=0; i<137; i++) {
+        layer5.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 6:
+      for(i=0; i<137; i++) {
+        layer6.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 7:
+      for(i=0; i<125; i++) {
+        layer7.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 8:
+      for(i=0; i<106; i++) {
+        layer8.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 9:
+      for(i=0; i<83; i++) {
+        layer9.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 10:
+      for(i=0; i<38; i++) {
+        layer10.setPixelColor(i, displayColor);
+      }
+      break;
+
+    case 11:
+      for(i=0; i<16; i++) {
+        layer11.setPixelColor(i, displayColor);
+      }
+      break;
+      
+    default:
+      break;
+  }
+}
+
+
 
 void assignColor(int layer, uint32_t displayColor) 
 {
