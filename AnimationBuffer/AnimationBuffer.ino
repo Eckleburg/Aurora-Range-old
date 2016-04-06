@@ -22,15 +22,18 @@ float rSlope, gSlope, bSlope;
 uint32_t curColor = c.Color(0, 0, 0);
 int customWheelSteps = 0;
 
-int animBufferSize = 24;
+int initSpeed = 0;
+//int animBufferSize = (11-initSpeed)*11;
+int animBufferSize = 11;
+
 boolean animDir = 1;
-uint32_t prevAnim[100], curAnim[100], tempAnim[100];
+uint32_t prevAnim[122], curAnim[122], tempAnim[122];
 
 float rainbowOffset = 15;
 
 void setup() 
 {
-  uint8_t  brightness = 80;
+  uint8_t  brightness = 30;
   Serial.begin(9600);
   
   layer0.begin();
@@ -86,23 +89,40 @@ void setup()
     prevAnim[arrayCntr] = c.Color(0, 0, 0);
     curAnim[arrayCntr] = c.Color(0, 0, 0);
   }
+//  doubleWave(c.Color(255, 0, 0), c.Color(0, 0, 255));
+
 }
 
 void loop() 
 {
-  for(int waveCntr = 0; waveCntr < 2; waveCntr++)
+//  for(int waveCntr = 0; waveCntr < 2; waveCntr++)
+//  {
+//  singleWave(c.Color(255, 0, 0));
+//  singleWave(c.Color(0, 0, 255));
+//  doubleWave(c.Color(255, 0, 0), c.Color(0, 0, 255));
+//  singleWave(c.Color(0, 255, 0));
+//  }
+//
+//  singleWave(c.Color(0, 0, 255));
+//  reverse();
+//  singleWave(c.Color(255, 255, 255));
+//  singleWave(c.Color(0, 255, 0));
+//  singleWave(c.Color(255, 0, 255));
+//  newSpeed(4);
+  
+//  for(int waveCntr = 0; waveCntr < 2; waveCntr++)
   {
-  singleWave(c.Color(255, 0, 0));
+//  singleWave(c.Color(255, 0, 0));
   singleWave(c.Color(0, 0, 255));
-  doubleWave(c.Color(255, 0, 0), c.Color(0, 0, 255));
+//  doubleWave(c.Color(255, 0, 0), c.Color(0, 0, 255));
   }
 
-  singleWave(c.Color(0, 0, 0));
-  resizeBuffer(48);
-  singleWave(c.Color(0, 255, 0));
-//  delay(1000);
-  singleWave(c.Color(255, 0, 255));
-  resizeBuffer(12);
+  doubleWave(c.Color(128, 128, 0), c.Color(0, 128, 128));
+  reverse();
+//  singleWave(c.Color(255, 255, 255));
+//  singleWave(c.Color(0, 255, 0));
+//  singleWave(c.Color(255, 0, 255));
+//  newSpeed(10);
 }
 
 void singleWave(uint32_t nextColor)
@@ -166,13 +186,19 @@ void displayAnim()
     {
       for(int layerCntr = 0; layerCntr <= 11; layerCntr++)
       {
-        if((animCntr-layerCntr*offset) < 0)
+        if((animCntr-(11-layerCntr)*offset) < 0)
         {
-          assignLayer(layerCntr, prevAnim[animCntr-(11-layerCntr)*offset+animBufferSize]);       
+          assignLayer(layerCntr, prevAnim[animCntr-(11 - layerCntr)*offset+animBufferSize]);
+          Serial.print("\nanimCntr = ");
+          Serial.print(animCntr);
+          Serial.print("\nreverse (prevAnim[");
+          Serial.print(animCntr-(11 - layerCntr)*offset+animBufferSize);
+          Serial.print("] = ");
+          Serial.print(prevAnim[animCntr-(11 - layerCntr)*offset+animBufferSize]);  
         }
         else
         {
-          assignLayer(layerCntr, curAnim[animCntr-(11-layerCntr)*offset]);
+          assignLayer(layerCntr, curAnim[animCntr-(11 - layerCntr)*offset]);
         }
         showLayer(layerCntr);
       }      
@@ -361,12 +387,13 @@ void showAll()
   layer11.show();
 }
 
-void resizeBuffer(int newBufferSize)
+void newSpeed(int nextSpeed)
 {
   singleWave(curColor);
   
-  for(int buffCntr = 0; buffCntr <= floor(animBufferSize/newBufferSize); buffCntr++)
-  singleWave(curColor);
+//  for(int buffCntr = 0; buffCntr <= floor(animBufferSize/newBufferSize); buffCntr++)
+//  {singleWave(curColor);}
+  int newBufferSize = (11-nextSpeed)*11;
   
   for(int arrayPos = 0; arrayPos <= newBufferSize; arrayPos++)
   {
@@ -382,10 +409,15 @@ void reverse()
 
   for(int dirCntr = 0; dirCntr <= animBufferSize; dirCntr++)
   {
-    tempAnim[dirCntr] = curAnim[dirCntr];
-    curAnim[dirCntr] = prevAnim[animBufferSize - dirCntr];
+    tempAnim[dirCntr] = prevAnim[dirCntr];
+  }
+
+  for(int dirCntr = 0; dirCntr <= animBufferSize; dirCntr++)
+  {
     prevAnim[animBufferSize - dirCntr] = tempAnim[dirCntr];
   }
+
+  curColor = prevAnim[animBufferSize];
 }
 
 void calcComp(uint32_t ccColor1, uint32_t ccColor2) 
