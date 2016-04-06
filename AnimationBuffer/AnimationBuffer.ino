@@ -23,7 +23,8 @@ uint32_t curColor = c.Color(0, 0, 0);
 int customWheelSteps = 0;
 
 int animBufferSize = 24;
-uint32_t prevAnim[100], curAnim[100], nextAnim[100];
+boolean animDir = 1;
+uint32_t prevAnim[100], curAnim[100], tempAnim[100];
 
 float rainbowOffset = 15;
 
@@ -84,7 +85,6 @@ void setup()
   {
     prevAnim[arrayCntr] = c.Color(0, 0, 0);
     curAnim[arrayCntr] = c.Color(0, 0, 0);
-    nextAnim[arrayCntr] = c.Color(0, 0, 0);
   }
 }
 
@@ -115,7 +115,7 @@ void singleWave(uint32_t nextColor)
     curAnim[arrayCntr] = c.Color(r1+rSlope*arrayCntr, g1+gSlope*arrayCntr, b1+bSlope*arrayCntr);
   }
 
-  displayAnimUp();
+  displayAnim();
   curColor = nextColor;
 }
 
@@ -137,27 +137,45 @@ void doubleWave(uint32_t nextColor1, uint32_t nextColor2)
     curAnim[arrayCntr+int(animBufferSize/2)] = c.Color(r1+rSlope*arrayCntr, g1+gSlope*arrayCntr, b1+bSlope*arrayCntr);
   }
 
-  displayAnimUp();
+  displayAnim();
   curColor = nextColor2;
   
 }
 
-void displayAnimUp()
+void displayAnim()
 {  
   int offset = int(animBufferSize/11);
   for(int animCntr = 0; animCntr <= animBufferSize; animCntr++)
   { 
-    for(int layerCntr = 0; layerCntr <= 11; layerCntr++)
+    if(animDir == 1)
     {
-      if((animCntr-layerCntr*offset) < 0)
+      for(int layerCntr = 0; layerCntr <= 11; layerCntr++)
       {
-        assignLayer(layerCntr, prevAnim[animCntr-layerCntr*offset+animBufferSize]);       
+        if((animCntr-layerCntr*offset) < 0)
+        {
+          assignLayer(layerCntr, prevAnim[animCntr-layerCntr*offset+animBufferSize]);       
+        }
+        else
+        {
+          assignLayer(layerCntr, curAnim[animCntr-layerCntr*offset]);
+        }
+        showLayer(layerCntr);
       }
-      else
+    }
+    else
+    {
+      for(int layerCntr = 0; layerCntr <= 11; layerCntr++)
       {
-        assignLayer(layerCntr, curAnim[animCntr-layerCntr*offset]);
-      }
-      showLayer(layerCntr);
+        if((animCntr-layerCntr*offset) < 0)
+        {
+          assignLayer(layerCntr, prevAnim[animCntr-(11-layerCntr)*offset+animBufferSize]);       
+        }
+        else
+        {
+          assignLayer(layerCntr, curAnim[animCntr-(11-layerCntr)*offset]);
+        }
+        showLayer(layerCntr);
+      }      
     }
 //    showAll();
   }
@@ -346,12 +364,28 @@ void showAll()
 void resizeBuffer(int newBufferSize)
 {
   singleWave(curColor);
+  
+  for(int buffCntr = 0; buffCntr <= floor(animBufferSize/newBufferSize); buffCntr++)
+  singleWave(curColor);
+  
   for(int arrayPos = 0; arrayPos <= newBufferSize; arrayPos++)
   {
     prevAnim[arrayPos] = curColor;
   }
 
   animBufferSize = newBufferSize;
+}
+
+void reverse()
+{
+  animDir = !animDir;
+
+  for(int dirCntr = 0; dirCntr <= animBufferSize; dirCntr++)
+  {
+    tempAnim[dirCntr] = curAnim[dirCntr];
+    curAnim[dirCntr] = prevAnim[animBufferSize - dirCntr];
+    prevAnim[animBufferSize - dirCntr] = tempAnim[dirCntr];
+  }
 }
 
 void calcComp(uint32_t ccColor1, uint32_t ccColor2) 
