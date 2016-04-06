@@ -20,10 +20,13 @@ Adafruit_NeoPixel c = Adafruit_NeoPixel(1,0);
 float r1, r2, g1, g2, b1, b2;
 float rSlope, gSlope, bSlope;
 uint32_t curColor = 0;
+int customWheelSteps = 0;
 
 void setup() 
 {
-  uint8_t  brightness = 128;
+  uint8_t  brightness = 120;
+
+  Serial.begin(9600);
   
   layer0.begin();
   layer0.setBrightness(brightness);
@@ -77,7 +80,11 @@ void setup()
 
 void loop() {
 
-stretchWaveUp(3, 0, c.Color(255, 0, 0), c.Color(0, 0, 255));
+stretchWaveUp(15, 1, c.Color(255, 0, 0), c.Color(0, 0, 255));
+stretchWaveUp(15, 2, c.Color(255, 0, 0), c.Color(0, 0, 255));
+//stretchWaveUp(8, 3, c.Color(255, 0, 0), c.Color(0, 0, 255));
+//stretchWaveUp(8, 4, c.Color(255, 0, 0), c.Color(0, 0, 255));
+stretchWaveUp(15, 1, c.Color(255, 0, 0), c.Color(0, 255, 0));
 
 //waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
 //waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
@@ -132,21 +139,23 @@ stretchWaveUp(3, 0, c.Color(255, 0, 0), c.Color(0, 0, 255));
   
 }
 
-void stretchWaveUp(int waveLayers, uint32_t wait, uint32_t color1, uint32_t color2)
+void stretchWaveUp(int waveLayers, int fadeMultiplier, uint32_t color1, uint32_t color2)
 {  
+  customWheelSteps = fadeMultiplier*waveLayers;
   calcComp(color1, color2);
-  calcSlopes(50);
+  calcSlopes(customWheelSteps);
 
-  for(int waveStep = 0; waveStep < 100; waveStep++)
+  for(int waveStep = 0; waveStep <= 2*customWheelSteps; waveStep++)
   {
-    for(int layerCntr = 0; layerCntr <= 11; layerCntr++)
-    {
-      if(waveStep <= 50)
-        assignLayer(layerCntr, c.Color(r1+rSlope*waveStep, g1+gSlope*waveStep, b1+bSlope*waveStep));
-      else if(waveStep > 50 && waveStep <= 100)
-        assignLayer(layerCntr, c.Color(r1-rSlope*(waveStep-50), g1-gSlope*(waveStep-50), b1-bSlope*(waveStep-50)));   
+    for(int layerCntr = 0; layerCntr < 11; layerCntr += waveLayers)
+    {      
+      for(int waveCntr = 0; waveCntr < waveLayers; waveCntr++)
+      {
+        assignLayer(layerCntr + waveCntr, customWheel(waveStep + 2*fadeMultiplier*waveCntr));
+      }
     }
-    showAll();
+       showAll();
+
   }
 }
 void singleColorExpand(uint32_t eColor)
@@ -550,5 +559,18 @@ void calcSlopes(int slopeSteps) {
   gSlope = (g2-g1)/slopeSteps;
   bSlope = (b2-b1)/slopeSteps;
 
+}
+
+uint32_t customWheel(int wheelPos)
+{
+  while(wheelPos > 2*customWheelSteps)
+  wheelPos -= 2*customWheelSteps;
+  while(wheelPos < 0)
+  wheelPos += 2*customWheelSteps;
+
+  if(wheelPos < (customWheelSteps))
+  return c.Color(r1+rSlope*wheelPos, g1+gSlope*wheelPos, b1+bSlope*wheelPos);
+  else
+  return c.Color(r2-rSlope*(wheelPos-customWheelSteps), g2-gSlope*(wheelPos-customWheelSteps), b2-bSlope*(wheelPos-customWheelSteps));
 }
 
