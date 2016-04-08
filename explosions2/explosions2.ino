@@ -77,7 +77,7 @@ void setup()
 
 void loop() {
 
-explosions(10, c.Color(255, 0, 0), c.Color(0, 0, 255));
+explosions(0, c.Color(255, 0, 0), c.Color(0, 0, 255));
 
 }
 

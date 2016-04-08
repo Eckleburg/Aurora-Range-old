@@ -25,7 +25,7 @@ float rainbowOffset = 15;
 
 void setup() 
 {
-  uint8_t  brightness = 180;
+  uint8_t  brightness = 80;
   
   layer0.begin();
   layer0.setBrightness(brightness);

@@ -82,59 +82,59 @@ void loop() {
 
 stretchWaveUp(15, 1, c.Color(255, 0, 0), c.Color(0, 0, 255));
 stretchWaveUp(15, 2, c.Color(255, 0, 0), c.Color(0, 0, 255));
-//stretchWaveUp(8, 3, c.Color(255, 0, 0), c.Color(0, 0, 255));
-//stretchWaveUp(8, 4, c.Color(255, 0, 0), c.Color(0, 0, 255));
+stretchWaveUp(8, 3, c.Color(255, 0, 0), c.Color(0, 0, 255));
+stretchWaveUp(8, 4, c.Color(255, 0, 0), c.Color(0, 0, 255));
 stretchWaveUp(15, 1, c.Color(255, 0, 0), c.Color(0, 255, 0));
 
-//waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
-//waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
-//waveUpFade(4, c.Color(0, 0, 0), c.Color(255, 0, 0), c.Color(0, 255, 0));
-//
-//waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 255, 0));
-//waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 255, 0));
-//waveUpFade(4, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
-//
-//waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 0, 255));
-//waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 0, 255));
-//waveUpFade(4, c.Color(0, 0, 0), c.Color(0, 0, 255), c.Color(255, 0, 0));
-//
-//waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
-//waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
-//waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
-//waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
-//waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
-//waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
-//waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
-//waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
-//waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
-//
-//
-//waveUp(11, 10, 0, c.Color(255, 0, 0), c.Color(0, 255, 0));
-//waveUp(11, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-//waveUp(5, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 0, 255));
-//waveUp(3 , 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 255));
-//waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-//waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-//waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-//
-////singleColorFadeEx(5, c.Color(128, 255, 255));
-//curColor = c.Color(255, 0, 255);
-//singleColorFadeEx(1, c.Color(255, 255, 0));
-//
-//waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//delay(400);
-//waveUp(10, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//waveUp(9, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//waveUp(8, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//waveUp(7, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//waveUp(6, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//waveUp(5, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//waveUp(4, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//waveUp(3, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-//
-//
-//singleWaveUp(0x1F5B5D, 0xb8599b, c.Color(255,255,102));
+waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
+waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
+waveUpFade(4, c.Color(0, 0, 0), c.Color(255, 0, 0), c.Color(0, 255, 0));
+
+waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 255, 0));
+waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 255, 0));
+waveUpFade(4, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
+
+waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 0, 255));
+waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 0, 255));
+waveUpFade(4, c.Color(0, 0, 0), c.Color(0, 0, 255), c.Color(255, 0, 0));
+
+waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
+waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
+waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
+waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
+waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
+waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
+waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
+waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
+waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
+
+
+waveUp(11, 10, 0, c.Color(255, 0, 0), c.Color(0, 255, 0));
+waveUp(11, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
+waveUp(5, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 0, 255));
+waveUp(3 , 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 255));
+waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
+waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
+waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
+
+//singleColorFadeEx(5, c.Color(128, 255, 255));
+curColor = c.Color(255, 0, 255);
+singleColorFadeEx(1, c.Color(255, 255, 0));
+
+waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
+waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
+delay(400);
+waveUp(10, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+waveUp(9, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+waveUp(8, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+waveUp(7, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+waveUp(6, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+waveUp(5, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+waveUp(4, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+waveUp(3, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
+
+
+singleWaveUp(0x1F5B5D, 0xb8599b, c.Color(255,255,102));
 
   
 }

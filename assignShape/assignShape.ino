@@ -77,8 +77,8 @@ void setup()
 
 void loop() {
 
-chickenEx(0, c.Color(0, 0, 255), c.Color(0, 255, 0));
-wraithEx(0, c.Color(255, 0, 0), c.Color(0, 0, 255));
+chickenEx(40, c.Color(0, 0, 255), c.Color(0, 255, 0));
+wraithEx(40, c.Color(255, 0, 0), c.Color(0, 0, 255));
 
 }
 
