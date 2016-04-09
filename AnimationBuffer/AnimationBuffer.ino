@@ -32,7 +32,7 @@ float rainbowOffset = 15;
 
 void setup() 
 {
-  uint8_t  brightness = 120;
+  uint8_t  brightness = 50;
   Serial.begin(9600);
   
   layer0.begin();
@@ -92,98 +92,123 @@ void setup()
 
 void loop() 
 {
-  int waveCntr, waveCntr2;
-  newSpeed(10);
-  for(int waveCntr = 0; waveCntr < 2; waveCntr++)
-  {
-    singleWave(c.Color(255, 0, 0));
-    singleWave(c.Color(0, 0, 255));
-    doubleWave(c.Color(255, 0, 0), c.Color(0, 0, 255));
-    singleWave(c.Color(0, 255, 0));
-  }
+//  int waveCntr, waveCntr2;
+//  newSpeed(10);
+//  for(int waveCntr = 0; waveCntr < 2; waveCntr++)
+//  {
+//    singleWave(c.Color(255, 0, 0));
+//    singleWave(c.Color(0, 0, 255));
+//    doubleWave(c.Color(255, 0, 0), c.Color(0, 0, 255));
+//    singleWave(c.Color(0, 255, 0));
+//  }
+//
+//  singleWave(c.Color(0, 0, 255));
+//  reverse();
+//  singleWave(c.Color(255, 255, 255));
+//  
+//  singleWave(c.Color(0, 0, 0));
+//  singleWave(c.Color(0, 255, 255));
+//  singleWave(c.Color(0, 0, 0));
+//  singleWave(c.Color(0, 255, 255));
+//  singleWave(c.Color(0, 0, 0));
+//  singleWave(c.Color(0, 255, 255));
+//  
+//  singleWave(c.Color(0, 255, 0));
+//  singleWave(c.Color(255, 0, 255));
+//  singleWave(c.Color(0, 255, 0));
+//  newSpeed(8);
+//  
+//  for(int waveCntr = 0; waveCntr < 2; waveCntr++)
+//  {
+//    singleWave(c.Color(255, 0, 0));
+//    singleWave(c.Color(0, 0, 255));
+//    doubleWave(c.Color(255, 0, 0), c.Color(0, 0, 255));
+//  }
+//
+//  doubleWave(c.Color(128, 128, 0), c.Color(0, 128, 128));
+//  newSpeed(10);
+//  reverse();
+//  singleWave(c.Color(255, 255, 255));
+//  singleWave(c.Color(0, 255, 0));
+//  singleWave(c.Color(255, 0, 255));
+//
+////Begin Yellow, Purple, Turquoise
+//  newSpeed(8);
+//  for(waveCntr = 0; waveCntr < 4; waveCntr++)
+//  {
+//    doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 0));
+//    singleWave(c.Color(0, 0, 0));
+//  }
+//
+//  reverse();
+//  doubleWave(c.Color(0, 0, 0), c.Color(255, 255, 0));
+//  singleWave(c.Color(0, 0, 0));
+//  singleWave(c.Color(0, 0, 0));
+//
+//  reverse();
+//  newSpeed(9);
+//  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 0));
+//  singleWave(c.Color(0, 0, 0));
+//  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 0));
+//
+//  newSpeed(6);
+//
+//  singleWave(c.Color(0, 0, 0));
+//  singleWave(c.Color(255, 255, 0));
+//  singleWave(c.Color(0, 0, 0));
+//  singleWave(c.Color(0, 0, 0));
+//
+//  newSpeed(9);
+//  singleWave(c.Color(255, 255, 0));
+//  doubleWave(c.Color(255, 255, 0), c.Color(0, 128, 255));
+//  singleWave(c.Color(0, 0, 0));
+//  
+//  for(waveCntr2 = 0; waveCntr2 < 4; waveCntr2++)
+//  {
+//    for(waveCntr = 0; waveCntr < 3; waveCntr++)
+//    {
+//      tripleWave(c.Color(255, 255, 0), c.Color(0, 128, 255), c.Color(128, 0, 255));
+//      tripleWave(c.Color(0, 0, 0), c.Color(255, 255, 0), c.Color(128, 0, 255));
+//      tripleWave(c.Color(128, 0, 255), c.Color(255, 255, 0), c.Color(0, 128, 255));
+//    }
+//    reverse();
+//  }
+//
+//  newSpeed(10);
+//  for(waveCntr = 0; waveCntr < 6; waveCntr++)
+//  {
+//    tripleWave(c.Color(128, 0, 255), c.Color(0, 128, 255), c.Color(128, 0, 255));
+//    tripleWave(c.Color(0, 128, 255), c.Color(128, 0, 255), c.Color(0, 128, 255));
+//  }
+//  
+//  singleWave(c.Color(128, 0, 255));
+//  singleWave(c.Color(255, 255, 0));
+//  singleWave(c.Color(0, 0, 0));
 
-  singleWave(c.Color(0, 0, 255));
+//Orange Blue and Cyan
+  singleWave(c.Color(255, 70, 0));
+  singleWave(c.Color(0, 43, 255));
+  singleWave(c.Color(0, 255, 213));
+  singleWave(c.Color(0, 43, 255));
+  singleWave(c.Color(255, 70, 0));
+  
   reverse();
-  singleWave(c.Color(255, 255, 255));
-  
   singleWave(c.Color(0, 0, 0));
-  singleWave(c.Color(0, 255, 255));
-  singleWave(c.Color(0, 0, 0));
-  singleWave(c.Color(0, 255, 255));
-  singleWave(c.Color(0, 0, 0));
-  singleWave(c.Color(0, 255, 255));
-  
-  singleWave(c.Color(0, 255, 0));
-  singleWave(c.Color(255, 0, 255));
-  singleWave(c.Color(0, 255, 0));
-  newSpeed(8);
-  
-  for(int waveCntr = 0; waveCntr < 2; waveCntr++)
-  {
-    singleWave(c.Color(255, 0, 0));
-    singleWave(c.Color(0, 0, 255));
-    doubleWave(c.Color(255, 0, 0), c.Color(0, 0, 255));
-  }
-
-  doubleWave(c.Color(128, 128, 0), c.Color(0, 128, 128));
-  newSpeed(10);
   reverse();
-  singleWave(c.Color(255, 255, 255));
-  singleWave(c.Color(0, 255, 0));
-  singleWave(c.Color(255, 0, 255));
-
-//Begin Yellow, Purple, Turquoise
-  newSpeed(8);
-  for(waveCntr = 0; waveCntr < 4; waveCntr++)
-  {
-    doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 0));
-    singleWave(c.Color(0, 0, 0));
-  }
-
+  singleWave(c.Color(0, 0, 0));
   reverse();
-  doubleWave(c.Color(0, 0, 0), c.Color(255, 255, 0));
   singleWave(c.Color(0, 0, 0));
-  singleWave(c.Color(0, 0, 0));
-
   reverse();
-  newSpeed(9);
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 0));
   singleWave(c.Color(0, 0, 0));
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 0));
-
-  newSpeed(6);
-
+  reverse();
   singleWave(c.Color(0, 0, 0));
-  singleWave(c.Color(255, 255, 0));
+  reverse();
   singleWave(c.Color(0, 0, 0));
+  reverse();
   singleWave(c.Color(0, 0, 0));
-
-  newSpeed(9);
-  singleWave(c.Color(255, 255, 0));
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 128, 255));
-  singleWave(c.Color(0, 0, 0));
-  
-  for(waveCntr2 = 0; waveCntr2 < 4; waveCntr2++)
-  {
-    for(waveCntr = 0; waveCntr < 3; waveCntr++)
-    {
-      tripleWave(c.Color(255, 255, 0), c.Color(0, 128, 255), c.Color(128, 0, 255));
-      tripleWave(c.Color(0, 0, 0), c.Color(255, 255, 0), c.Color(128, 0, 255));
-      tripleWave(c.Color(128, 0, 255), c.Color(255, 255, 0), c.Color(0, 128, 255));
-    }
-    reverse();
-  }
-
-  newSpeed(10);
-  for(waveCntr = 0; waveCntr < 6; waveCntr++)
-  {
-    tripleWave(c.Color(128, 0, 255), c.Color(0, 128, 255), c.Color(128, 0, 255));
-    tripleWave(c.Color(0, 128, 255), c.Color(128, 0, 255), c.Color(0, 128, 255));
-  }
-  
-  singleWave(c.Color(128, 0, 255));
-  singleWave(c.Color(255, 255, 0));
-  singleWave(c.Color(0, 0, 0));
+  reverse();
+  doubleWave(c.Color(0, 43, 255), c.Color(0, 0, 0));
+  doubleWave(c.Color(0, 43, 255), c.Color(0, 0, 0));
 }
 
 void singleWave(uint32_t nextColor)
