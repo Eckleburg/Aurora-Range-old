@@ -75,11 +75,26 @@ void setup()
   layer11.setBrightness(brightness);
   layer11.show();
 
-  opening(60);
+//  opening(60);
 
 }
 
 void loop() 
+{
+
+void rainbow()
+{
+ rainbowSkip(10, 1);
+ rainbowSkip(10, 1);
+ rainbowSkip(10, 1);
+ rainbowSkip(10, 1);
+ rainbowSkip(6, -1);
+ rainbowSkip(10, 1);
+ rainbowSkip(6, -1);
+ rainbowSkip(6, -1);
+}
+
+void rainbowSpeed()
 {
   for(int rainbowCounter=0; rainbowCounter<5; rainbowCounter++)
   {

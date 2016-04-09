@@ -79,65 +79,11 @@ void setup()
 }
 
 void loop() {
-
-stretchWaveUp(15, 1, c.Color(255, 0, 0), c.Color(0, 0, 255));
-stretchWaveUp(15, 2, c.Color(255, 0, 0), c.Color(0, 0, 255));
-stretchWaveUp(8, 3, c.Color(255, 0, 0), c.Color(0, 0, 255));
-stretchWaveUp(8, 4, c.Color(255, 0, 0), c.Color(0, 0, 255));
-stretchWaveUp(15, 1, c.Color(255, 0, 0), c.Color(0, 255, 0));
-
-waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
-waveUp(4, 10, 10, c.Color(0, 0, 0), c.Color(255, 0, 0));
-waveUpFade(4, c.Color(0, 0, 0), c.Color(255, 0, 0), c.Color(0, 255, 0));
-
-waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 255, 0));
-waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 255, 0));
-waveUpFade(4, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
-
-waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 0, 255));
-waveUp(4, 5, 10, c.Color(0, 0, 0), c.Color(0, 0, 255));
-waveUpFade(4, c.Color(0, 0, 0), c.Color(0, 0, 255), c.Color(255, 0, 0));
-
-waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
-waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
-waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
-waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
-waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
-waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
-waveUpFade(5, c.Color(128, 128, 128), c.Color(255, 0, 0), c.Color(0, 255, 0));
-waveUpFade(5, c.Color(0, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 255));
-waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
+  waveUp(1, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 250, 0));
 
 
-waveUp(11, 10, 0, c.Color(255, 0, 0), c.Color(0, 255, 0));
-waveUp(11, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-waveUp(5, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 0, 255));
-waveUp(3 , 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 255));
-waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-waveUp(2, 20, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-
-//singleColorFadeEx(5, c.Color(128, 255, 255));
-curColor = c.Color(255, 0, 255);
-singleColorFadeEx(1, c.Color(255, 255, 0));
-
-waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveDn(11, c.Color(255, 255, 0), c.Color(255, 0, 255));
-delay(400);
-waveUp(10, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(9, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(8, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(7, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(6, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(5, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(4, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-waveUp(3, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
-
-
-singleWaveUp(0x1F5B5D, 0xb8599b, c.Color(255,255,102));
-
-  
 }
+
 
 void stretchWaveUp(int waveLayers, int fadeMultiplier, uint32_t color1, uint32_t color2)
 {  
@@ -185,11 +131,9 @@ void singleColorFadeEx(int fadeSteps, uint32_t eColor)
       showAll();
     }
   }
-  
-
-curColor = eColor;
-
+  curColor = eColor;
 }
+
 void singleColorClose(uint32_t eColor)
 {
   for (int l=11; l>=0; l--)
@@ -198,8 +142,6 @@ void singleColorClose(uint32_t eColor)
     showAll();
     delay(20);
   }
-
-
 }
 
 void waveUp(int waves, int fadeSteps, uint32_t wait, uint32_t tColor1, uint32_t tColor2)
@@ -210,7 +152,7 @@ void waveUp(int waves, int fadeSteps, uint32_t wait, uint32_t tColor1, uint32_t 
   {
     for (int m=0; m<=fadeSteps; m++)
     {
-      for (int h=0; h<11; h=h+waves)
+      for (int h=0; h<12; h=h+waves)
       {
         assignColor(h+j, c.Color(r1+m*rSlope, g1+m*gSlope, b1+m*bSlope));
         assignColor(h+j-1, c.Color(r2-m*rSlope, g2-m*gSlope, b2-m*bSlope));
@@ -220,7 +162,7 @@ void waveUp(int waves, int fadeSteps, uint32_t wait, uint32_t tColor1, uint32_t 
 
         if(h+j == 0)
         {
-          assignColor(11, tColor1);        
+          assignColor(11, c.Color(r2-m*rSlope, g2-m*gSlope, b2-m*bSlope));        
           showLayer(11);
         }
         delay(wait);
@@ -242,8 +184,6 @@ void singleWaveUp(uint32_t bColor1, uint32_t bColor2, uint32_t wColor)
       }
 
       assignColor(j, wColor);
-
-  
       delay(50);
       showAll();
 
@@ -298,8 +238,7 @@ void waveDn(int waves, uint32_t tColor1, uint32_t tColor2)
     for (int h=0; h<11; h=h+waves) {
       assignColor(h+j, tColor1);
     }
-  }
-  
+  } 
 }
 
 void assignLayer(int layer, uint32_t displayColor) 
