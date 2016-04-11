@@ -150,23 +150,23 @@ waveUpFade(5, c.Color(128, 128, 128), c.Color(0, 0, 255), c.Color(255, 0, 0));
 
 
 waveUp(11, 10, 0, c.Color(255, 0, 0), c.Color(0, 255, 0));
-waveUp(11, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 255, 0));
-waveUp(5, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 0, 255));
+waveUp(11, 15, 0, c.Color(255, 0, 0), c.Color(0, 255, 0));
+waveUp(5, 15, 0, c.Color(255, 0, 0), c.Color(0, 0, 255));
 waveUp(3, 15, 0, c.Color(255, 0, 0), c.Color(0, 255, 255));
 
 for (int sk = 0; sk <=5; sk++)
 {
-  waveUp(2, 15, 0, layer0.Color(255, 0, 0), layer0.Color(0, 250, 0));
+  waveUp(2, 15, 0, c.Color(255, 0, 0), c.Color(0, 250, 0));
 }
 
 for (int sk = 0; sk <=5; sk++)
 {
-  waveUp(2, 15, 0, layer0.Color(0, 255, 0), layer0.Color(0, 0, 255));
+  waveUp(2, 15, 0, c.Color(0, 255, 0), c.Color(0, 0, 255));
 }
 
 for (int sk = 0; sk <=5; sk++)
 {
-  waveUp(2, 15, 0, layer0.Color(0, 0, 255), layer0.Color(255, 0, 0));
+  waveUp(2, 15, 0, c.Color(0, 0, 255), c.Color(255, 0, 0));
 }
 
 singleColorFadeEx(5, c.Color(128, 255, 255));
@@ -189,27 +189,27 @@ waveUp(3, 1, 5, c.Color(255, 255, 0), c.Color(255, 0, 255));
 
 singleWaveUp(0x1F5B5D, 0xb8599b, c.Color(255,255,102));
 
-  singleColorExpand(layer0.Color(0, 128, 255));
-waveDn(6, layer0.Color(0, 128, 255), layer0.Color(255, 255, 102));
-waveDn(6, layer0.Color(0, 128, 255), layer0.Color(255, 255, 102));
+  singleColorExpand(c.Color(0, 128, 255));
+waveDn(6, c.Color(0, 128, 255), c.Color(255, 255, 102));
+waveDn(6, c.Color(0, 128, 255), c.Color(255, 255, 102));
 for(g=0; g<10; g++)
 {
-waveDn(6, layer0.Color(204, 102, 0), layer0.Color(255, 255, 102));
+waveDn(6, c.Color(204, 102, 0), c.Color(255, 255, 102));
 }
 
 for(g=0; g<3; g++)
 {
-waveDn(6, layer0.Color(128, 0, 255), layer0.Color(255, 255, 102));
+waveDn(6, c.Color(128, 0, 255), c.Color(255, 255, 102));
 }
 
 for(g=0; g<3; g++)
 {
-waveDn(6, layer0.Color(255, 255, 0), layer0.Color(255, 255, 102));
+waveDn(6, c.Color(255, 255, 0), c.Color(255, 255, 102));
 }
 
 for(g=0; g<3; g++)
 {
-waveDn(6, layer0.Color(0, 200, 35), layer0.Color(255, 255, 102));
+waveDn(6, c.Color(0, 200, 35), c.Color(255, 255, 102));
 }
 
 }
@@ -221,8 +221,8 @@ void spin()
   singleColorExpand(c.Color(0, 255, 0));
   for(spinCntr = 0; spinCntr < 4; spinCntr++)
   {
-    waveUp(1, 50, 0, layer0.Color(255, 0, 0), layer0.Color(0, 250, 0));
-    waveUp(1, 50, 0, layer0.Color(0, 0, 255), layer0.Color(255, 0, 0));
+    waveUp(1, 50, 0, c.Color(255, 0, 0), c.Color(0, 250, 0));
+    waveUp(1, 50, 0, c.Color(0, 0, 255), c.Color(255, 0, 0));
   }
 }
 

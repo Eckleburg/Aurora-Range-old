@@ -83,6 +83,8 @@ void loop() {
 
       start = 0;
       fin = 37;
+
+      fin = layer0.numPixels();
       dif = fin-start;
       for(int i=start ; i<fin; i++)
       {
