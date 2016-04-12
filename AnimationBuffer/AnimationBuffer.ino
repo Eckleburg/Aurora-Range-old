@@ -3,18 +3,31 @@
   #include <avr/power.h>
 #endif
 
-Adafruit_NeoPixel layer0 = Adafruit_NeoPixel(38, 2);
-Adafruit_NeoPixel layer1 = Adafruit_NeoPixel(66, 3);
-Adafruit_NeoPixel layer2 = Adafruit_NeoPixel(97, 4);
-Adafruit_NeoPixel layer3 = Adafruit_NeoPixel(112, 5);
-Adafruit_NeoPixel layer4 = Adafruit_NeoPixel(144, 6);
-Adafruit_NeoPixel layer5 = Adafruit_NeoPixel(137, 7);
-Adafruit_NeoPixel layer6 = Adafruit_NeoPixel(137, 8);
-Adafruit_NeoPixel layer7 = Adafruit_NeoPixel(125, 9);
-Adafruit_NeoPixel layer8 = Adafruit_NeoPixel(106, 10);
-Adafruit_NeoPixel layer9 = Adafruit_NeoPixel(83, 11);
-Adafruit_NeoPixel layer10 = Adafruit_NeoPixel(38, 12);
-Adafruit_NeoPixel layer11 = Adafruit_NeoPixel(16, 13);
+int length0 = 38;
+int length1 = 66;
+int length2 = 97;
+int length3 = 112;
+int length4 = 144;
+int length5 = 137;
+int length6 = 137;
+int length7 = 125;
+int length8 = 106;
+int length9 = 83;
+int length10 = 38;
+int length11 = 16;
+
+Adafruit_NeoPixel layer0 = Adafruit_NeoPixel(length0, 2);
+Adafruit_NeoPixel layer1 = Adafruit_NeoPixel(length1, 3);
+Adafruit_NeoPixel layer2 = Adafruit_NeoPixel(length2, 4);
+Adafruit_NeoPixel layer3 = Adafruit_NeoPixel(length3, 5);
+Adafruit_NeoPixel layer4 = Adafruit_NeoPixel(length4, 6);
+Adafruit_NeoPixel layer5 = Adafruit_NeoPixel(length5, 7);
+Adafruit_NeoPixel layer6 = Adafruit_NeoPixel(length6, 8);
+Adafruit_NeoPixel layer7 = Adafruit_NeoPixel(length7, 9);
+Adafruit_NeoPixel layer8 = Adafruit_NeoPixel(length8, 10);
+Adafruit_NeoPixel layer9 = Adafruit_NeoPixel(length9, 11);
+Adafruit_NeoPixel layer10 = Adafruit_NeoPixel(length10, 12);
+Adafruit_NeoPixel layer11 = Adafruit_NeoPixel(length11, 13);
 Adafruit_NeoPixel c = Adafruit_NeoPixel(1,0);
 
 float r1, r2, g1, g2, b1, b2;
@@ -98,7 +111,7 @@ void loop()
   softWaves();
   sharpWaves();
   spin();
-  singleColorExpand(0, 0, 0);
+  singleColorExpand(c.Color(0, 0, 0));
   opening(60);
   rainbowSpeed();
   singleColorExpand(c.Color(0, 0, 0));
