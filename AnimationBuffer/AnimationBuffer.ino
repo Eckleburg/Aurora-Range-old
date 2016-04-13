@@ -45,7 +45,7 @@ float rainbowOffset = 15;
 
 void setup() 
 {
-  uint8_t  brightness = 50;
+  uint8_t  brightness = 160;
   Serial.begin(9600);
   
   layer0.begin();
@@ -114,8 +114,11 @@ void loop()
   singleColorExpand(c.Color(0, 0, 0));
   opening(60);
   rainbowSpeed();
+  delay(1000);
   singleColorExpand(c.Color(0, 0, 0));
   curColor = c.Color(0, 0, 0);
+  delay(1000);
+  colorWheel();
   delay(5000);
 }
 
@@ -775,7 +778,7 @@ for(int bg = 1; bg<=50; bg++)
     delay(100);
 }
 
-  
+  curColor = c.Color(0, 0, 0);
   for (int l=1; l<=11; l++)
   {
     eColor = Wheel((l*int(rainbowOffset))&255);
@@ -829,6 +832,136 @@ void rainbowSkip(int skip, int dir)
       
       showAll();
     }      
+  }
+}
+
+void colorWheel()
+{
+  colorWheelOpen();
+  colorWheelSkip(3);
+  colorWheelSkip(3);
+  colorWheelSkip(3);
+  for(int loopCntr = 0; loopCntr < 5; loopCntr++)
+  {
+    colorWheelSkip(5);
+  }
+  
+  for(int loopCntr = 0; loopCntr < 5; loopCntr++)
+  {
+    colorWheelSkip(10);
+  }
+  colorWheelSkip(5);
+  colorWheelClose();
+}
+
+void colorWheelOpen()
+{
+  //Turns on all layers 1 pixel/layer at a time.
+  for(int pixelCntr = 0; pixelCntr < 145; pixelCntr++)
+  {
+    layer0.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length0));
+    layer1.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length1));
+    layer2.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length2));
+    layer3.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length3));
+    layer4.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length4));
+    layer5.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length5));
+    layer6.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length6));
+    layer7.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length7));
+    layer8.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length8));
+    layer9.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length9));
+    layer10.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length10));
+    layer11.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length11));
+    showAll();
+  }
+}
+
+void colorWheelClose()
+{
+  //Turns off all layers 1 pixel/layer at a time.
+  for(int pixelCntr = 0; pixelCntr < 145; pixelCntr++)
+  {
+    layer0.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer1.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer2.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer3.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer4.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer5.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer6.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer7.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer8.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer9.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer10.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer11.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    showAll();
+  }
+}
+
+void colorWheelSkip(int wheelSkip)
+{
+  int wheelCntr, pixelCntr;
+
+  for(wheelCntr = 0; wheelCntr < 255; wheelCntr += wheelSkip)
+  {
+    for(pixelCntr = 0; pixelCntr < length0; pixelCntr++)
+    {
+      layer0.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length0 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length1; pixelCntr++)
+    {
+      layer1.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length1 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length2; pixelCntr++)
+    {
+      layer2.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length2 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length3; pixelCntr++)
+    {
+      layer3.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length3 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length4; pixelCntr++)
+    {
+      layer4.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length4 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length5; pixelCntr++)
+    {
+      layer5.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length5 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length6; pixelCntr++)
+    {
+      layer6.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length6 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length7; pixelCntr++)
+    {
+      layer7.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length7 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length8; pixelCntr++)
+    {
+      layer8.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length8 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length9; pixelCntr++)
+    {
+      layer9.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length9 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length10; pixelCntr++)
+    {
+      layer10.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length10 + wheelCntr));
+    }
+    
+    for(pixelCntr = 0; pixelCntr < length11; pixelCntr++)
+    {
+      layer11.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length11 + wheelCntr));
+    }
+    showAll();
   }
 }
 
@@ -1043,6 +1176,11 @@ void calcSlopes(int slopeSteps) {
 
 uint32_t Wheel(float WheelPos) {
 //  WheelPos = 255 - WheelPos;
+  while(WheelPos > 255)
+  WheelPos -= 255;
+  while(WheelPos < 0)
+  WheelPos += 255;
+  
   if(WheelPos < 85) {
     return layer1.Color(255 - WheelPos * 3, 0, WheelPos * 3);
   }

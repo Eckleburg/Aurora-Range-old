@@ -88,20 +88,32 @@ void setup()
 
 
 void loop() {
-
-colorWheel();
-
-  
-
-  }
+  colorWheel();
+}
 
 void colorWheel()
 {
-  int wheelCntr, pixelCntr;
-  int wheelSkip;
+  colorWheelOpen();
+  colorWheelSkip(3);
+  colorWheelSkip(3);
+  colorWheelSkip(3);
+  for(int loopCntr = 0; loopCntr < 5; loopCntr++)
+  {
+    colorWheelSkip(5);
+  }
+  
+  for(int loopCntr = 0; loopCntr < 5; loopCntr++)
+  {
+    colorWheelSkip(10);
+  }
+  colorWheelSkip(5);
+  colorWheelClose();
+}
 
+void colorWheelOpen()
+{
   //Turns on all layers 1 pixel/layer at a time.
-  for(pixelCntr = 0; pixelCntr < 145; pixelCntr++)
+  for(int pixelCntr = 0; pixelCntr < 145; pixelCntr++)
   {
     layer0.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length0));
     layer1.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length1));
@@ -117,6 +129,32 @@ void colorWheel()
     layer11.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length11));
     showAll();
   }
+}
+
+void colorWheelClose()
+{
+  //Turns off all layers 1 pixel/layer at a time.
+  for(int pixelCntr = 0; pixelCntr < 145; pixelCntr++)
+  {
+    layer0.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer1.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer2.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer3.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer4.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer5.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer6.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer7.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer8.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer9.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer10.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    layer11.setPixelColor(pixelCntr, c.Color(0, 0, 0));
+    showAll();
+  }
+}
+
+void colorWheelSkip(int wheelSkip)
+{
+  int wheelCntr, pixelCntr;
 
   for(wheelCntr = 0; wheelCntr < 255; wheelCntr += wheelSkip)
   {
@@ -179,6 +217,7 @@ void colorWheel()
     {
       layer11.setPixelColor(pixelCntr, Wheel(pixelCntr*255/length11 + wheelCntr));
     }
+    showAll();
   }
 }
 
