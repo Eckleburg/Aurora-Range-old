@@ -82,8 +82,6 @@ void loop() {
  waggle(30, layer0.Color(0, 0, 0), layer0.Color(0, 153, 76));
  waggle(30, layer0.Color(0, 0, 0), layer0.Color(52, 89, 149));
  waggle(30, layer0.Color(0, 0, 0), layer0.Color(251, 77, 61));
-// waggle(30, layer0.Color(0, 0, 0), layer0.Color(0, 0, 0)); 
-// waggle(30, layer0.Color(0, 0, 0), layer0.Color(0, 0, 0));
 }
 
 
@@ -99,9 +97,8 @@ void waggle(int scale, uint32_t wColor, uint32_t fillColor)
         assignPixel(l, i+j, wColor);
       }
     }
-    showColors();
+    showAll();
     delay(40);
-  
 
   for(int i=0; i<=144; i=i+scale)
     {
@@ -111,29 +108,8 @@ void waggle(int scale, uint32_t wColor, uint32_t fillColor)
       }
     }
   }
-  
-//  for(int j=scale; j>0; j--)
-//  { 
-//    for(int i=0; i<=144; i=i+scale)
-//    {
-//      for(int l=0; l<=11; l++)
-//      {
-//        assignPixel(l, i+j, wColor);
-//      }
-//    }
-//    showColors();
-//    delay(40);
-  
-
-//  for(int i=0; i<=144; i=i+scale)
-//    {
-//      for(int l=0; l<=11; l++)
-//      {
-//        assignPixel(l, i+j, fillColor);
-//      }
-//    }
-//  }
 }
+
 void assignPixel(int layer, int pixel, uint32_t displayColor) 
 {
   int i;

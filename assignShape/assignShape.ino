@@ -77,10 +77,31 @@ void setup()
 
 void loop() {
 
-chickenEx(40, c.Color(0, 0, 255), c.Color(0, 255, 0));
-wraithEx(40, c.Color(255, 0, 0), c.Color(0, 0, 255));
-
+  uint32_t exDelay = 2000;
+  
+  chickenEx(40, c.Color(0, 0, 255), c.Color(0, 255, 0));
+  delay(exDelay);
+  wraithEx(40, c.Color(255, 0, 0), c.Color(0, 0, 255));
+  delay(exDelay);
+  wraithEx(40, c.Color(255, 255, 0), c.Color(128, 0, 128));
+  delay(exDelay);
+  singleColorExpand(c.Color(0, 0, 0));
+  delay(500);
+  chickenEx(40, c.Color(0, 128, 255), c.Color(255, 255, 255));
+  delay(exDelay);
+  wraithEx(40, c.Color(0, 0, 0), c.Color(255, 0, 0));
+  delay(exDelay);
+  chickenEx(40, c.Color(0, 255, 255), c.Color(255, 0, 255));
+  delay(exDelay);
+  chickenEx(40, c.Color(0, 0, 0), c.Color(0, 0, 255));
+  delay(exDelay);
+  wraithEx(40, c.Color(255, 70, 0), c.Color(0, 255, 213));
+  delay(exDelay);
+  singleColorExpand(c.Color(255, 255, 255));
+  delay(exDelay);
 }
+
+
 
 void chickenEx(uint8_t exDelay, uint32_t exColor1, uint32_t exColor2)
 {
@@ -241,6 +262,17 @@ void wraithEx(uint8_t exDelay, uint32_t exColor1, uint32_t exColor2)
   assignLayer(10, c.Color(r1+rSlope, g1+gSlope, b1+bSlope));
   showLayer(10);
   delay(exDelay);
+}
+
+
+void singleColorExpand(uint32_t eColor)
+{
+  for (int l=0; l<=11; l++)
+  {
+    assignLayer(l, eColor);
+    showAll();
+    delay(20);
+  }
 }
 
 void assignShape(int layer, int shape, uint32_t displayColor) 
