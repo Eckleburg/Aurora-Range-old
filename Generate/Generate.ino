@@ -45,7 +45,7 @@ float rainbowOffset = 15;
 
 void setup() 
 {
-  uint8_t  brightness = 130;
+  uint8_t  brightness = 180;
   Serial.begin(9600);
   
   layer0.begin();
@@ -101,479 +101,334 @@ void setup()
     prevAnim[arrayCntr] = c.Color(0, 0, 0);
     curAnim[arrayCntr] = c.Color(0, 0, 0);
   }
-//  opening(60);
-//  singleColorExpand(c.Color(0, 0, 0));
-//  curColor = c.Color(0, 0, 0);
+  curColor = c.Color(0, 0, 0);
 }
 
 void loop() 
 {
-  softWaves();
-  sharpWaves();
-  spin();
-  singleColorExpand(c.Color(0, 0, 0));
-  delay(2000);
-  generate();
-  delay(2000);
-  waggleloop();
-  singleColorExpand(c.Color(0, 0, 0));
-  opening(60);
-  rainbowSpeed();
-  delay(1000);
-  singleColorExpand(c.Color(0, 0, 0));
-  curColor = c.Color(0, 0, 0);
-  delay(1000);
-  colorWheel();
-  singleColorExpand(c.Color(0, 0, 0));
-  delay(2000);
-  explosionLoop();
-  delay(5000);
+int curExDelay;
+
+curColor = c.Color(0, 0, 0);
+setAll(c.Color(0, 0, 0));
+  
+delay(600);
+assignShape(0, 1, c.Color(255, 0, 0));
+showLayer(0);
+delay(600);
+assignShape(0, 1, c.Color(255, 255, 0));
+showLayer(0);
+delay(600);
+assignShape(0, 1, c.Color(0, 255, 0));
+showLayer(0);
+delay(600);
+assignShape(0, 1, c.Color(150, 150, 150));
+showLayer(0);
+delay(1000);
+setAll(c.Color(0, 0, 0));
+delay(1500);
+
+newSpeed(7);
+singleWave(c.Color(255, 0, 0));
+singleWave(c.Color(0, 0, 255));
+singleWave(c.Color(255, 0, 0));
+newSpeed(10);
+
+int strobeCntr;
+
+for(strobeCntr = 0; strobeCntr < 2; strobeCntr++)
+{
+  strobe(c.Color(128, 128, 128), 150);
 }
 
-void generate()
+for(strobeCntr = 0; strobeCntr < 5; strobeCntr++)
 {
-  int curExDelay, fadeCntr;
-  
-  curColor = c.Color(0, 0, 0);
-  setAll(c.Color(0, 0, 0));
-  
-  newSpeed(7);
-  singleWave(c.Color(255, 0, 0));
-  singleWave(c.Color(0, 0, 255));
-  singleWave(c.Color(255, 0, 0));
-  singleWave(c.Color(0, 0, 255));
-  singleWave(c.Color(255, 0, 0));
-  singleWave(c.Color(0, 0, 255));
-  singleWave(c.Color(255, 0, 0));
-  singleWave(c.Color(0, 0, 255));
-  singleWave(c.Color(255, 0, 0));
-  singleWave(c.Color(255, 0, 0));
-  newSpeed(10);
-  
-  int strobeCntr;
-  
-  for(strobeCntr = 0; strobeCntr < 2; strobeCntr++)
-  {
-    strobe(c.Color(128, 128, 128), 150);
-  }
-  
-  for(strobeCntr = 0; strobeCntr < 5; strobeCntr++)
-  {
-    strobe(c.Color(255, 255, 255), 30);
-  }
-  
-  for(strobeCntr = 0; strobeCntr < 7; strobeCntr++)
-  {
-    strobe(c.Color(255, 255, 255), 10);
-  }
-  
-  //doubleWave(c.Color(0, 255, 0), c.Color(0, 0, 255));
-  //doubleWave(c.Color(0, 255, 0), c.Color(0, 0, 255));
-  //doubleWave(c.Color(0, 255, 0), c.Color(0, 0, 255));
-  //doubleWave(c.Color(0, 255, 0), c.Color(0, 0, 255));
-  
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);  
-  rainbowSkip(15, 1);
-  rainbowSkip(15, 1);  
-  
-  delay(40);
-  
-  waveUp(11, 4, 0, c.Color(0, 0, 0), c.Color(255, 0, 255));
-  setAll(c.Color(0, 0, 0));
-  delay(100);
-  delay(220);
-  
-  curExDelay = 220;
-  
-  rainbowSkip(20, -1);
-  delay(curExDelay);
-  rainbowSkip(20, -1);
-  delay(curExDelay);
-  rainbowSkip(20, -1);
-  delay(curExDelay);  
-  rainbowSkip(20, -1);
-  delay(curExDelay);
-  rainbowSkip(20, -1);
-  delay(curExDelay);
-  rainbowSkip(20, -1);
-  delay(curExDelay);  
-  rainbowSkip(20, -1);
-  delay(curExDelay);
-  rainbowSkip(20, -1);
-  delay(curExDelay);
-  rainbowSkip(20, -1);
-  delay(curExDelay);
-  
-  calcComp(c.Color(255, 255, 255), c.Color(0, 0, 0));
-  calcSlopes(17);
-  
-  for(fadeCntr = 0; fadeCntr < 18; fadeCntr++)
-  {
-    setAll(c.Color(r1+rSlope*fadeCntr, g1+gSlope*fadeCntr, b1+bSlope*fadeCntr));
-  }
-  
-  tripleWave(c.Color(0, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 255), c.Color(255, 255, 0), c.Color(255, 255, 255));
-  tripleWave(c.Color(0, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 255), c.Color(255, 255, 0), c.Color(0, 0, 0));  
-  tripleWave(c.Color(0, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 255), c.Color(255, 255, 0), c.Color(255, 0, 0));
-  tripleWave(c.Color(0, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 255), c.Color(255, 255, 0), c.Color(0, 0, 0));  
-  tripleWave(c.Color(255, 0, 0), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 255), c.Color(255, 255, 0), c.Color(255, 255, 255));
-  tripleWave(c.Color(0, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 255), c.Color(255, 0, 0), c.Color(0, 0, 0));
-  //Also here
-  delay(40);
-  waveUpFade(4, c.Color(0, 0, 0), c.Color(255, 0, 0), c.Color(0, 255, 255));
-  waveUpFade(4, c.Color(0, 0, 0), c.Color(255, 0, 0), c.Color(0, 255, 255));
-  delay(40);
-  
-  reverse();
-  doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
-  doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
-  doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
-  doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
-  doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
-  doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
-  doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
-  doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
-  reverse();
-  doubleWave(c.Color(255, 0, 0), c.Color(255, 255, 0));
-  tripleWave(c.Color(255, 255, 255), c.Color(255, 255, 255), c.Color(255, 255, 255));
-  
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  
-  //waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  //waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  //waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 0));
-    
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
-  
-  //waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  //waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  //waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 0));
-  
-  curColor = c.Color(0, 0, 0);
-  reverse();
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 255, 255), c.Color(0, 0, 0), c.Color(0, 255, 255));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 255, 255), c.Color(0, 0, 0), c.Color(0, 255, 255));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
-  delay(40);
-  delay(40);
-  waveUp(11, 1, 0, c.Color(0, 0, 0), c.Color(255, 0, 255));
-  waveDn(11, c.Color(0, 0, 0), c.Color(0, 0, 255));
-  
-  reverse();
-  delay(120);
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
-  reverse();
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  setAll(c.Color(0, 0, 0));
-  delay(40);
-  waveDn(4, c.Color(0, 0, 0), c.Color(128, 0, 255));
-  waveDn(4, c.Color(0, 0, 0), c.Color(255, 255, 0));
-  waveDn(4, c.Color(0, 0, 0), c.Color(128, 0, 255));
-  delay(120);
-  
-  setAll(c.Color(0, 255, 255));
-  delay(120);
-  setAll(c.Color(255, 0, 255));
-  delay(120);
-  setAll(c.Color(0, 255, 255));
-  delay(120);
-  setAll(c.Color(255, 0, 255));
-  delay(120);setAll(c.Color(0, 255, 255));
-  delay(120);
-  setAll(c.Color(255, 0, 255));
-  delay(120);
-  setAll(c.Color(0, 255, 255));
-  delay(120);
-  setAll(c.Color(255, 0, 255));
-  delay(120);
-  setAll(c.Color(0, 255, 255));
-  delay(120);
-  setAll(c.Color(0, 255, 255));
-  delay(40);
-  setAll(c.Color(255, 0, 255));
-  delay(40);
-  setAll(c.Color(255, 255, 0));
-  delay(40);
-  setAll(c.Color(0, 255, 255));
-  delay(40);
-  setAll(c.Color(255, 0, 255));
-  delay(40);
-  setAll(c.Color(0, 255, 255));
-  delay(40);
-  setAll(c.Color(255, 0, 255));
-  delay(40);
-  setAll(c.Color(255, 255, 0));
-  delay(40);
-  setAll(c.Color(0, 255, 255));
-  delay(40);
-  setAll(c.Color(255, 0, 255));
-  delay(40);
-  setAll(c.Color(0, 255, 255));
-  delay(40);
-  setAll(c.Color(255, 0, 255));
-  delay(40);
-  setAll(c.Color(255, 255, 0));
-  delay(40);
-  setAll(c.Color(0, 255, 255));
-  delay(40);
-  setAll(c.Color(255, 0, 255));
-  delay(40);
-  setAll(c.Color(255, 0, 255));
-  delay(40);
-  setAll(c.Color(255, 255, 0));
-  delay(40);
-  setAll(c.Color(0, 255, 255));
-  delay(40);
-  setAll(c.Color(255, 0, 255));
-  delay(40);
-  
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  waveUp(11, 1, 5, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  waveUp(11, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  delay(320);
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(120);
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(120);
-  waveUp(11, 1, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(120);
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  waveUp(11, 1, 5, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  waveUp(11, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  delay(320);
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(120);
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(120);
-  waveUp(11, 1, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(120);
-  
-  calcComp(c.Color(255, 255, 255), c.Color(0, 0, 0));
-  calcSlopes(17);
-  
-  for(fadeCntr = 0; fadeCntr < 18; fadeCntr++)
-  {
-    setAll(c.Color(r1+rSlope*fadeCntr, g1+gSlope*fadeCntr, b1+bSlope*fadeCntr));
-  }
-  
-  curExDelay = 440;
-  
-  chickenEx( 10, c.Color(0, 128, 255), c.Color(128, 0, 255));
-  delay(curExDelay);
-  wraithEx(10, c.Color(128, 0, 255), c.Color(255, 255, 0));
-  delay(curExDelay);
-  chickenEx( 10, c.Color(255, 0, 0), c.Color(0, 255, 0));
-  delay(curExDelay);
-  wraithEx(10, c.Color(255, 70, 0), c.Color(0, 43, 255));
-  delay(160);
-  wraithEx(10, c.Color(0, 0, 0), c.Color(255, 0, 0));
-  delay(360);
-  chickenEx( 10, c.Color(0, 128, 255), c.Color(128, 0, 255));
-  delay(curExDelay);
-  wraithEx(10, c.Color(128, 0, 255), c.Color(255, 255, 0));
-  delay(curExDelay);
-  chickenEx( 10, c.Color(255, 0, 0), c.Color(0, 255, 0));
-  delay(curExDelay);
-  wraithEx(10, c.Color(255, 70, 0), c.Color(0, 43, 255));
-  delay(160);
-  wraithEx(10, c.Color(0, 0, 0), c.Color(255, 0, 0));
-  delay(360);
-  
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  waveUp(11, 1, 5, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  waveUp(11, 1, 0, c.Color(0, 0, 255), c.Color(255, 255, 255));
-  delay(300);
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(120);
-  waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(120);
-  waveUp(11, 1, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
-  delay(40);
-  waveUp(11, 2, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
-  delay(120);
-  waveUp(11, 1, 0, c.Color(0, 0, 255 ), c.Color(255, 255, 255));
-  delay(200);
-  delay(120);
-  
-  //Here
-  curColor = c.Color(0, 0, 0);
-  
-  curExDelay = 180;
-  
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
-  delay(curExDelay);
-  reverse();
-  
-  curColor = c.Color(0, 0, 0);
-  
-  delay(220);
-  tripleWave(c.Color(255, 70, 0), c.Color(0, 43, 255), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 43, 255), c.Color(0, 0, 0), c.Color(0, 255, 213));
-  tripleWave(c.Color(255, 70, 0), c.Color(0, 43, 255), c.Color(0, 255, 213));
-  tripleWave(c.Color(255, 70, 0), c.Color(0, 43, 255), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 43, 255), c.Color(0, 0, 0), c.Color(0, 255, 213));
-  tripleWave(c.Color(255, 70, 0), c.Color(0, 43, 255), c.Color(0, 255, 213));
-  tripleWave(c.Color(255, 70, 0), c.Color(0, 43, 255), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 43, 255), c.Color(0, 0, 0), c.Color(0, 255, 213));
-  tripleWave(c.Color(255, 70, 0), c.Color(0, 43, 255), c.Color(0, 255, 213));
-  reverse();
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  reverse();
-  
-  setAll(c.Color(255, 255, 255));
-  delay(380);
-  
-  singleWave(c.Color(128, 0, 255));
-  singleWave(c.Color(0, 255, 0));
-  singleWave(c.Color(128, 0, 255));  
-  singleWave(c.Color(128, 0, 255));
-  singleWave(c.Color(0, 255, 0));
-  singleWave(c.Color(128, 0, 255));  
-  singleWave(c.Color(128, 0, 255));
-  singleWave(c.Color(0, 255, 0));
-  singleWave(c.Color(128, 0, 255));  
-  singleWave(c.Color(128, 0, 255));
-  singleWave(c.Color(0, 255, 0));
-  singleWave(c.Color(128, 0, 255));
-  delay(180);
-  reverse();
-  tripleWave(c.Color(0, 255, 0), c.Color(128, 0, 255), c.Color(0, 255, 0));
-  tripleWave(c.Color(128, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 255, 0), c.Color(128, 0, 255), c.Color(0, 255, 0));
-  tripleWave(c.Color(128, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 255, 0), c.Color(128, 0, 255), c.Color(0, 255, 0));
-  tripleWave(c.Color(128, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 255, 0), c.Color(128, 0, 255), c.Color(0, 255, 0));
-  tripleWave(c.Color(128, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
-  singleWave(c.Color(0, 0, 0));
-  singleWave(c.Color(0, 0, 0));
-  delay(180);
-  
-  singleWave(c.Color(227, 28, 227));
-  singleWave(c.Color(15, 240, 228));
-  singleWave(c.Color(227, 28, 227));
-  singleWave(c.Color(15, 240, 228));
-  singleWave(c.Color(227, 28, 227));
-  singleWave(c.Color(15, 240, 228));
-  singleWave(c.Color(227, 28, 227));
-  singleWave(c.Color(15, 240, 228));
-  singleWave(c.Color(227, 28, 227));
-  delay(180);
-  reverse();
-  tripleWave(c.Color(0, 0, 0), c.Color(227, 28, 227), c.Color(15, 240, 228));
-  tripleWave(c.Color(227, 28, 227), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(227, 28, 227), c.Color(15, 240, 228));
-  tripleWave(c.Color(227, 28, 227), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(227, 28, 227), c.Color(15, 240, 228));
-  tripleWave(c.Color(227, 28, 227), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(227, 28, 227), c.Color(15, 240, 228));
-  tripleWave(c.Color(227, 28, 227), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
-  delay(180);
-  
-  //setAll(c.Color(255, 255, 255));
-  delay(5000);
-  delay(5000);
+  strobe(c.Color(255, 255, 255), 30);
+}
+
+for(strobeCntr = 0; strobeCntr < 7; strobeCntr++)
+{
+  strobe(c.Color(255, 255, 255), 10);
+}
+
+//doubleWave(c.Color(0, 255, 0), c.Color(0, 0, 255));
+//doubleWave(c.Color(0, 255, 0), c.Color(0, 0, 255));
+//doubleWave(c.Color(0, 255, 0), c.Color(0, 0, 255));
+//doubleWave(c.Color(0, 255, 0), c.Color(0, 0, 255));
+
+rainbowSkip(15, 1);
+rainbowSkip(15, 1);
+rainbowSkip(15, 1);
+
+
+delay(40);
+
+waveUp(11, 4, 0, c.Color(0, 0, 0), c.Color(255, 0, 255));
+setAll(c.Color(0, 0, 0));
+delay(100);
+delay(220);
+
+curExDelay = 220;
+
+rainbowSkip(20, -1);
+delay(curExDelay);
+rainbowSkip(20, -1);
+delay(curExDelay);
+rainbowSkip(20, -1);
+delay(curExDelay);
+
+calcComp(c.Color(255, 255, 255), c.Color(0, 0, 0));
+calcSlopes(17);
+int fadeCntr;
+
+for(fadeCntr = 0; fadeCntr < 18; fadeCntr++)
+{
+  setAll(c.Color(r1+rSlope*fadeCntr, g1+gSlope*fadeCntr, b1+bSlope*fadeCntr));
+}
+
+tripleWave(c.Color(0, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
+tripleWave(c.Color(0, 0, 255), c.Color(255, 255, 0), c.Color(255, 255, 255));
+tripleWave(c.Color(0, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
+tripleWave(c.Color(0, 0, 255), c.Color(255, 255, 0), c.Color(0, 0, 0));
+//Also here
+delay(40);
+waveUpFade(4, c.Color(0, 0, 0), c.Color(255, 0, 0), c.Color(0, 255, 255));
+waveUpFade(4, c.Color(0, 0, 0), c.Color(255, 0, 0), c.Color(0, 255, 255));
+delay(40);
+
+reverse();
+doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
+doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
+doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
+doubleWave(c.Color(0, 0, 255), c.Color(0, 255, 0));
+reverse();
+doubleWave(c.Color(255, 0, 0), c.Color(255, 255, 0));
+tripleWave(c.Color(255, 255, 255), c.Color(255, 255, 255), c.Color(255, 255, 255));
+
+waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
+waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
+waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
+waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
+waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
+waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
+waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
+waveUp(4, 1, 0, c.Color(255, 255, 255), c.Color(255, 0, 0));
+
+//waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
+waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
+waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
+waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
+waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
+waveUp(4, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
+
+waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
+waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
+waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
+waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
+waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
+//waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 255));
+//waveUp(4, 1, 0, c.Color(0, 0, 0), c.Color(0, 0, 0));
+
+curColor = c.Color(0, 0, 0);
+reverse();
+tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
+tripleWave(c.Color(0, 255, 255), c.Color(0, 0, 0), c.Color(0, 255, 255));
+tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
+tripleWave(c.Color(0, 0, 0), c.Color(0, 255, 255), c.Color(0, 0, 0));
+delay(40);
+delay(40);
+waveUp(11, 1, 0, c.Color(0, 0, 0), c.Color(255, 0, 255));
+waveDn(11, c.Color(0, 0, 0), c.Color(0, 0, 255));
+
+reverse();
+delay(120);
+tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
+tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
+tripleWave(c.Color(0, 255, 255), c.Color(255, 255, 0), c.Color(255, 0, 255));
+reverse();
+tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
+setAll(c.Color(0, 0, 0));
+delay(40);
+waveDn(4, c.Color(0, 0, 0), c.Color(128, 0, 255));
+waveDn(4, c.Color(0, 0, 0), c.Color(255, 255, 0));
+waveDn(4, c.Color(0, 0, 0), c.Color(128, 0, 255));
+delay(120);
+
+setAll(c.Color(0, 255, 255));
+delay(120);
+setAll(c.Color(255, 0, 255));
+delay(120);
+setAll(c.Color(0, 255, 255));
+delay(120);
+setAll(c.Color(255, 0, 255));
+delay(120);setAll(c.Color(0, 255, 255));
+delay(120);
+setAll(c.Color(255, 0, 255));
+delay(120);
+setAll(c.Color(0, 255, 255));
+delay(120);
+setAll(c.Color(255, 0, 255));
+delay(120);
+setAll(c.Color(0, 255, 255));
+delay(120);
+setAll(c.Color(0, 255, 255));
+delay(40);
+setAll(c.Color(255, 0, 255));
+delay(40);
+setAll(c.Color(255, 255, 0));
+delay(40);
+setAll(c.Color(0, 255, 255));
+delay(40);
+setAll(c.Color(255, 0, 255));
+delay(40);
+setAll(c.Color(0, 255, 255));
+delay(40);
+setAll(c.Color(255, 0, 255));
+delay(40);
+setAll(c.Color(255, 255, 0));
+delay(40);
+setAll(c.Color(0, 255, 255));
+delay(40);
+setAll(c.Color(255, 0, 255));
+delay(40);
+setAll(c.Color(0, 255, 255));
+delay(40);
+setAll(c.Color(255, 0, 255));
+delay(40);
+setAll(c.Color(255, 255, 0));
+delay(40);
+setAll(c.Color(0, 255, 255));
+delay(40);
+setAll(c.Color(255, 0, 255));
+delay(40);
+setAll(c.Color(255, 0, 255));
+delay(40);
+setAll(c.Color(255, 255, 0));
+delay(40);
+setAll(c.Color(0, 255, 255));
+delay(40);
+setAll(c.Color(255, 0, 255));
+delay(40);
+
+waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+waveUp(11, 1, 5, c.Color(0, 0, 0), c.Color(255, 255, 255));
+waveUp(11, 1, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
+delay(320);
+waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+delay(120);
+waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+delay(120);
+waveUp(11, 1, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+delay(120);
+
+calcComp(c.Color(255, 255, 255), c.Color(0, 0, 0));
+calcSlopes(17);
+
+for(fadeCntr = 0; fadeCntr < 18; fadeCntr++)
+{
+  setAll(c.Color(r1+rSlope*fadeCntr, g1+gSlope*fadeCntr, b1+bSlope*fadeCntr));
+}
+
+curExDelay = 440;
+
+chickenEx( 10, c.Color(0, 128, 255), c.Color(128, 0, 255));
+delay(curExDelay);
+wraithEx(10, c.Color(128, 0, 255), c.Color(255, 255, 0));
+delay(curExDelay);
+chickenEx( 10, c.Color(255, 0, 0), c.Color(0, 255, 0));
+delay(curExDelay);
+wraithEx(10, c.Color(255, 70, 0), c.Color(0, 43, 255));
+delay(160);
+wraithEx(10, c.Color(0, 0, 0), c.Color(255, 0, 0));
+delay(360);
+
+waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+waveUp(11, 1, 5, c.Color(0, 0, 0), c.Color(255, 255, 255));
+waveUp(11, 1, 0, c.Color(0, 0, 255), c.Color(255, 255, 255));
+delay(300);
+waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+delay(120);
+waveUp(11, 2, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+delay(120);
+waveUp(11, 1, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+delay(40);
+waveUp(11, 2, 0, c.Color(0, 255, 0), c.Color(255, 255, 255));
+delay(120);
+waveUp(11, 1, 0, c.Color(0, 0, 255 ), c.Color(255, 255, 255));
+delay(200);
+delay(120);
+
+//Here
+curColor = c.Color(0, 0, 0);
+
+curExDelay = 180;
+
+doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
+delay(curExDelay);
+reverse();
+doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
+delay(curExDelay);
+reverse();
+doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
+delay(curExDelay);
+reverse();
+doubleWave(c.Color(255, 255, 0), c.Color(0, 0, 255));
+delay(curExDelay);
+
+curColor = c.Color(0, 0, 0);
+
+delay(220);
+tripleWave(c.Color(255, 70, 0), c.Color(0, 43, 255), c.Color(0, 0, 0));
+tripleWave(c.Color(0, 43, 255), c.Color(0, 0, 0), c.Color(0, 255, 213));
+tripleWave(c.Color(255, 70, 0), c.Color(0, 43, 255), c.Color(0, 255, 213));
+reverse();
+tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
+tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
+reverse();
+
+setAll(c.Color(255, 255, 255));
+delay(380);
+
+singleWave(c.Color(128, 0, 255));
+singleWave(c.Color(0, 255, 0));
+singleWave(c.Color(128, 0, 255));
+delay(180);
+reverse();
+tripleWave(c.Color(0, 255, 0), c.Color(128, 0, 255), c.Color(0, 255, 0));
+tripleWave(c.Color(128, 0, 255), c.Color(0, 255, 0), c.Color(0, 0, 0));
+delay(180);
+
+waveUp(11, 2, 0, c.Color(0, 0, 255), c.Color(0, 0, 0));
+waveUp(11, 1, 5, c.Color(0, 0, 255), c.Color(0, 0, 0));
+waveUp(11, 1, 0, c.Color(255, 70, 0), c.Color(0, 0, 0));
+delay(300);
+waveUp(11, 2, 0, c.Color(0, 0, 255), c.Color(0, 0, 0));
+delay(120);
+waveUp(11, 2, 0, c.Color(0, 0, 255), c.Color(0, 0, 0));
+delay(120);
+//waveUp(11, 1, 0, c.Color(0, 0, 0), c.Color(255, 255, 255));
+//delay(40);
+waveUp(11, 2, 0, c.Color(0, 255, 0), c.Color(0, 0, 0));
+delay(120);
+//waveUp(11, 1, 0, c.Color(0, 0, 255 ), c.Color(255, 255, 255));
+//delay(200);
+//delay(120);
+
+setAll(c.Color(0, 0, 0));
+delay(580);
+
+singleWave(c.Color(227, 28, 227));
+singleWave(c.Color(15, 240, 228));
+singleWave(c.Color(227, 28, 227));
+delay(180);
+reverse();
+tripleWave(c.Color(0, 0, 0), c.Color(227, 28, 227), c.Color(15, 240, 228));
+tripleWave(c.Color(227, 28, 227), c.Color(0, 0, 0), c.Color(0, 0, 0));
+tripleWave(c.Color(0, 0, 0), c.Color(0, 0, 0), c.Color(0, 0, 0));
+delay(180);
+
+//setAll(c.Color(255, 255, 255));
+delay(5000);
+delay(5000);
 
 }
 
@@ -586,7 +441,6 @@ void strobe(uint32_t strobeColor, uint8_t strobeDelay)
   showAll();
   delay(strobeDelay);
 }
-
 
 void waggleloop() 
 {
@@ -2122,15 +1976,6 @@ void assignShape(int layer, int shape, uint32_t displayColor)
   }
 }
 
-void setAll(uint32_t allColor)
-{
-  for(int layerCntr = 0; layerCntr < 12; layerCntr++)
-  {
-    assignLayer(layerCntr, allColor);
-  }
-  showAll();
-}
-
 void showLayer(int layer)
 {
   switch(layer)
@@ -2203,6 +2048,15 @@ void showAll()
   layer9.show();
   layer10.show();
   layer11.show();
+}
+
+void setAll(uint32_t allColor)
+{
+  for(int layerCntr = 0; layerCntr < 12; layerCntr++)
+  {
+    assignLayer(layerCntr, allColor);
+  }
+  showAll();
 }
 
 void newSpeed(int nextSpeed)
