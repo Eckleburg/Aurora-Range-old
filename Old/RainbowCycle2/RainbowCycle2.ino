@@ -7,9 +7,13 @@
 #define PIN2 9
 #define PIN3 10
 
+#define PIN4 1
+
 Adafruit_NeoPixel strip1 = Adafruit_NeoPixel(11, PIN1);
 Adafruit_NeoPixel strip2 = Adafruit_NeoPixel(20, PIN2);
 Adafruit_NeoPixel strip3 = Adafruit_NeoPixel(29, PIN3);
+
+Adafruit_NeoPixel sign = Adafruit_NeoPixel(37, PIN4);
 
 // IMPORTANT: To reduce NeoPixel burnout risk, add 1000 uF capacitor across
 // pixel power leads, add 300 - 500 Ohm resistor on first pixel's data input
@@ -55,10 +59,16 @@ void rainbowCycle(uint8_t skip) {
       for(i=0; i< strip3.numPixels(); i++) {
         strip3.setPixelColor(i, Wheel(((i * 256 / strip3.numPixels()) + j) & 255));
       }
+
+      for(i=0 i< sign.numPixels(); i++)
+      {
+        sign.setPixelColor(i, Wheel(j & 255));
+      }
   
       strip1.show();
       strip2.show();
       strip3.show();
+      sign.show();
     }
   }
 }

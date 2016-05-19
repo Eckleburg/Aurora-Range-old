@@ -78,7 +78,7 @@ void setup()
 void loop() {
 
 for(int i=0; i<=11; i++) {
-  assignColor(i, layer0.Color(102, 100, 100));
+//  assignColor(i, layer0.Color(102, 100, 100));
 }
 showColors();
 }

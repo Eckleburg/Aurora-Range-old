@@ -45,7 +45,7 @@ float rainbowOffset = 15;
 
 void setup() 
 {
-  uint8_t  brightness = 180;
+  uint8_t  brightness = 160;
   Serial.begin(9600);
   
   layer0.begin();
